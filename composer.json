@@ -1,0 +1,13 @@
+{
+    "name": "itpolsri/attica",
+    "description": "Simple HTTP client built on curl",
+    "type": "library",
+    "require": {
+        "guzzlehttp/promises": "^1.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Felis\\":"src/Felis/"
+        }
+    }
+}
