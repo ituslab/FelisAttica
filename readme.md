@@ -37,6 +37,7 @@ echo ("\n" . $raw . "\n");
 ```
 
 
+More example below...
 
 
 ### Example of synchronous request
