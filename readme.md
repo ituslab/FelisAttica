@@ -1,6 +1,44 @@
 ## Felis Attica (Http Client)
 
 
+Its just a simple http library to interface with php-curl 
+
+we just provide helper method for you , so you don't need to interact with `curl_setopt` directly anymore
+
+### php Curl to send data to server (too much `curl_setopt`)
+--- 
+```
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL,"http://www.example.com/tester.phtml");
+curl_setopt($ch, CURLOPT_POST, 1);
+
+curl_setopt($ch, CURLOPT_POSTFIELDS, 
+         http_build_query(array('postvar1' => 'value1')));
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$server_output = curl_exec($ch);
+curl_close ($ch);
+```
+
+### With our Attica Client (easy to use interface)
+---
+```
+$postForm = AtticaClient::POST("http://httpbin.org/post");
+$postForm->send(array(
+    'username'=>'Hello',
+    'password'=>'World'
+), 'application/x-www-form-urlencoded')->execute();
+
+// getting raw response from server
+$raw = $postForm->rawResponse();
+echo ("\n" . $raw . "\n");
+```
+
+
+
+
 ### Example of synchronous request
 ```
 
