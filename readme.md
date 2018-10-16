@@ -93,3 +93,5 @@ echo (
 );
 
 ```
+
+> Other HTTP verbs coming soon...
