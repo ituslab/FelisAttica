@@ -34,7 +34,7 @@ class AtticaExecutioner {
         curl_setopt($this->tCurl , CURLOPT_HTTPHEADER , $arrCType);
     }
     
-    private function sendJSON($data) {
+    public function sendJSON($data) {
         $this->expectedValue($data , "array");
         $this->setContentType('application/json');
 
@@ -55,7 +55,7 @@ class AtticaExecutioner {
         throw new \Error("Error: parsing content type");
     }
     
-    private function sendFormData($data) {
+    public function sendFormData($data) {
         $this->expectedValue($data , "array");
         $this->setContentType('application/x-www-form-urlencoded');
 
