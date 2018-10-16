@@ -5,10 +5,6 @@ namespace Felis\Attica;
 class AtticaExecutioner { 
     
     private $tCurl;
-    private $tResult;
-    private $tInfo;
-    private $tError;
-    private $tErrMessage;
 
 
 
@@ -64,39 +60,19 @@ class AtticaExecutioner {
         return $this;
     }
 
-    public function jsonDecoded() {
-        $decode = json_decode($this->tResult);
-        if($decode === NULL) {
-            return '';
-        }
-        return $decode;
-    }
-
-    public function rawResponse(){
-        return $this->tResult;
-    }
-
-    public function getStatusCode() {
-        return $this->tInfo['http_code'];
-    }
-
-    public function getErrCode() {
-        return $this->tError;
-    }
-
-    public function getErrMessage() {
-        return $this->tErrMessage;
-    }
-
     public function execute() {
         curl_setopt($this->tCurl , CURLOPT_RETURNTRANSFER , true);
         
-        $this->tResult = curl_exec($this->tCurl);
-        $this->tInfo = curl_getinfo($this->tCurl);
-        $this->tError = \curl_errno($this->tCurl);
-        $this->tErrMessage = curl_error($this->tCurl);
+        $result = curl_exec($this->tCurl);
+        $info = curl_getinfo($this->tCurl);
+        $errorCode = curl_errno($this->tCurl);
+        $errMessage = curl_error($this->tCurl);
+
+        $atticaResponse = new AtticaResponse($result , $info['http_code'], $errorCode , $errMessage );
 
         curl_close($this->tCurl);
+
+        return $atticaResponse;
     }
 }
 
