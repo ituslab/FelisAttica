@@ -43,19 +43,22 @@ echo($reqresResponse . PHP_EOL);
 More example below...
 
 
-### More Examples...
-```
+> ### More Examples...
 
-// ex .1
-// HTTP GET request
+
+HTTP GET request
+
+```
 $apiGithub = AtticaClient::GET("https://api.github.com/users/itpolsri")
     ->execute()
     // get rawResponse from server
     ->rawResponse();
 echo($apiGithub . PHP_EOL);
+```
 
-// ex .2
-// HTTP POST request (application/json)
+
+HTTP POST request (application/json)
+```
 $reqresResponse = AtticaClient::POST("https://reqres.in/api/users")
     ->sendJSON(
         array(
@@ -68,10 +71,12 @@ $reqresResponse = AtticaClient::POST("https://reqres.in/api/users")
     // get rawResponse from server
     ->rawResponse();
 echo($reqresResponse . PHP_EOL);
+```
 
 
-// ex .3
-// HTTP POST request (application/x-www-form-urlencoded)
+
+HTTP POST request (application/x-www-form-urlencoded)
+```
 $httpBinResp = AtticaClient::POST("http://httpbin.org/post")
     ->sendFormData(
         array(
@@ -91,7 +96,40 @@ $password = $formData->password;
 echo (
     $username . PHP_EOL . $password . PHP_EOL
 );
-
 ```
 
-> Other HTTP verbs coming soon...
+
+HTTP PUT request
+```
+$putResponse = AtticaClient::PUT("http://httpbin.org/put")
+    ->sendJSON(
+        array(
+            'this'=>'is',
+            'put'=>'method'
+        )
+    )
+    ->execute()
+    ->rawResponse();
+
+echo (
+    $putResponse . PHP_EOL
+);
+```
+
+
+HTTP DELETE REQUEST
+```
+$deleteResponse = AtticaClient::DELETE("http://httpbin.org/delete")
+    ->sendJSON(
+        array(
+            'this'=>'is',
+            'delete'=>'method'
+        )
+    )
+    ->execute()
+    ->rawResponse();
+
+echo (
+    $deleteResponse . PHP_EOL
+);
+```

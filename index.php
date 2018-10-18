@@ -51,3 +51,37 @@ echo (
     $username . PHP_EOL . $password . PHP_EOL
 );
 
+
+
+// ex .4  
+// HTTP PUT request
+$putResponse = AtticaClient::PUT("http://httpbin.org/put")
+    ->sendJSON(
+        array(
+            'this'=>'is',
+            'put'=>'method'
+        )
+    )
+    ->execute()
+    ->rawResponse();
+
+echo (
+    $putResponse . PHP_EOL
+);
+
+// ex .5
+// HTTP DELETE REQUEST
+$deleteResponse = AtticaClient::DELETE("http://httpbin.org/delete")
+    ->sendJSON(
+        array(
+            'this'=>'is',
+            'delete'=>'method'
+        )
+    )
+    ->execute()
+    ->rawResponse();
+
+echo (
+    $deleteResponse . PHP_EOL
+);
+

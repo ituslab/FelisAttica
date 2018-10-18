@@ -61,6 +61,7 @@ class AtticaExecutioner {
     }
 
     public function execute() {
+        curl_setopt($this->tCurl , CURLOPT_FOLLOWLOCATION , true);
         curl_setopt($this->tCurl , CURLOPT_RETURNTRANSFER , true);
         
         $result = curl_exec($this->tCurl);
